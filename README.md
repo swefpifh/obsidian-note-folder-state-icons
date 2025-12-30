@@ -160,7 +160,7 @@ Initial implementation generated with the assistance of AI and refined manually.
 
 ## 🛠 Updates
 
-v0.1.2 - 2025/12/30 | Separators added to separate status icons
+v0.1.2 - 2025/12/30 | Separators added to separate states icons
 
 v0.1.1 - 2025/12/30 | French and English supported
 
