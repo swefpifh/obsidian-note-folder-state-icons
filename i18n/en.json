@@ -1,0 +1,36 @@
+{
+  "menu.state": "State",
+  "menu.none": "None",
+
+  "state.validated": "Validated",
+  "state.refused": "Refused",
+  "state.warning": "Warning",
+
+  "state.bookpiles": "Piles of books",
+  "state.notebook": "Notebook",
+  "state.bookred": "Red Book",
+  "state.bookorange": "Orange Book",
+  "state.bookgreen": "Green Book",
+  "state.bookblue": "Blue Book",
+
+  "state.squarered": "Red Square",
+  "state.squareorange": "Orange Square",
+  "state.squareyellow": "Yellow Square",
+  "state.squaregreen": "Green Square",
+  "state.squareblue": "Blue Square",
+  "state.squarepurple": "Purple Square",
+  "state.squareblack": "Black Square",
+
+  "state.inprogress": "In Progress",
+  "state.review": "Review",
+  "state.redflag": "Red Flag",
+
+  "state.frozen": "Frozen",
+  "state.hot": "Hot",
+  "state.explode": "Explode",
+  "state.love": "Love",
+  "state.light": "Light",
+  "state.globe": "Globe",
+  "state.sun": "Sun",
+  "state.star": "Star"
+}
