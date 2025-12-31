@@ -71,11 +71,22 @@ Examples of available states include:
 - ⬛ Black Square  
 
 ### Miscellaneous
+- 🧝 Elf
+- 🧞 Djinn
+- 🧛 Vampire
+- 🧚 Fairy
+- 🧙 Magician
+- 🧟️ Zombie
+
+### Miscellaneous
 - ❄️ Frozen  
 - 🔥 Hot  
 - 💥 Explode  
-- ❤️ Love  
-- 💡 Light  
+- ❤️ Love
+- 🔰 Arrow
+- 🎖️ Medal
+- 💡 Light
+- ⚔️ 2 Swords
 - 🌐 Globe  
 - 🔅 Sun  
 - ⭐ Star  
@@ -161,6 +172,8 @@ Initial implementation generated with the assistance of AI and refined manually.
 ---
 
 ## 🛠 Updates
+
+v0.1.3 - 2025/12/30 | New states icons added (*Elf, djinn, Vampire, Magician, Zombie, Arrow, Medal, 2 Swords*)
 
 v0.1.2 - 2025/12/30 | Separators added to separate states icons
 
