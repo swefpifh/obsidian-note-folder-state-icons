@@ -170,7 +170,7 @@ Initial implementation generated with the assistance of AI and refined manually.
 
 ## 🛠 Updates
 
-v0.1.4 - 2026/01/02 | New states icons added (*Human*); Species and Misc icons added in submenu named "Misc"
+v0.1.4 - 2026/01/02 | State icons can added to folder too; New states icons added (*Human*); Species and Misc icons added in submenu named "Misc"
 
 v0.1.3 - 2026/01/01 | New states icons added (*Elf, djinn, Vampire, Magician, Zombie, Arrow, Medal, 2 Swords*)
 
