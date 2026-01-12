@@ -1,6 +1,6 @@
-# Obsidian - Note State Icons
+# Note & Folder State Icons *for Obsidian*
 
-**Obsidian Note State Icons** is an open-source plugin for Obsidian that lets you assign a **visual state** to notes/folders using **icons displayed directly in the File Explorer**.
+**Note & Folder State Icons** is an open-source plugin for Obsidian that lets you assign a **visual state** to notes/folders using **icons displayed directly in the File Explorer**.
 
 The purpose of this plugin is to provide **clear, immediate visual feedback** about the role, category, or status of a note and folder — without modifying the note content itself.
 
@@ -133,7 +133,7 @@ It relies on the desktop File Explorer UI and context menu system, which are not
 1. Download or clone this repository
 2. Copy the folder into: `<YourVault>/.obsidian/plugins/obsidian-note-state-icons`
 3. Restart Obsidian
-4. Enable **Obsidian Note State Icons** in `Settings → Community plugins`
+4. Enable **Note & Folder State Icons** in `Settings → Community plugins`
 
 ---
 
