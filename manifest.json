@@ -3,7 +3,7 @@
   "name": "Note & Folder State Icons",
   "version": "0.1.5",
   "minAppVersion": "1.0.0",
-  "description": "Add a status icon to the left of a note's or folder's title.",
+  "description": "Add a state icon to the left of a note's or folder's title.",
   "author": "swefpifh",
   "authorUrl": "",
   "isDesktopOnly": true,
