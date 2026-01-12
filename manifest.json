@@ -1,12 +1,12 @@
 {
   "id": "obsidian-note-state-icons",
-  "name": "Note State Icons",
-  "version": "0.1.4",
+  "name": "Note & Folder State Icons",
+  "version": "0.1.5",
   "minAppVersion": "1.0.0",
-  "description": "Add a status icon to the left of a note's title.",
+  "description": "Add a status icon to the left of a note's or folder's title.",
   "author": "swefpifh",
   "authorUrl": "",
   "isDesktopOnly": true,
   "main": "main.js",
-  "repo": "swefpifh/obsidian-note-state-icons"
+  "repo": "swefpifh/obsidian-note-folder-state-icons"
 }

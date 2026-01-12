@@ -3,7 +3,7 @@ const { Plugin, TFolder } = require("obsidian");
 module.exports = class SwefNoteStateIconsPlugin extends Plugin {
 
   async onload() {
-    console.log("Note State Icons Loaded");
+    console.log("Note & Folder State Icons Loaded");
 
     // ===== I18N =====
     await this.loadI18n();
@@ -36,7 +36,7 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
       "squareblack":  { icon: "⬛", color: "#000000", labelKey: "state.squareblack" },
 
       // --- Group 4 : Species ---
-      "human":  	  { icon: "🙍", color: "#000000", labelKey: "state.human" },
+      "human":        { icon: "🙍", color: "#000000", labelKey: "state.human" },
       "elf":          { icon: "🧝", color: "#000000", labelKey: "state.elf" },
       "djinn":        { icon: "🧞", color: "#000000", labelKey: "state.djinn" },
       "vampire":      { icon: "🧛", color: "#000000", labelKey: "state.vampire" },
@@ -59,6 +59,10 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
     };
 
     this.stateMap = (await this.loadData()) || {};
+
+    // Nettoyage + refresh immédiat à l’activation (évite “pas d’icônes jusqu’au redémarrage”)
+    this.removeAllStateIcons();
+    this.triggerFullRefresh();
 
     // ===== CONTEXT MENU =====
     this.registerEvent(
@@ -173,8 +177,6 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
         this.triggerFullRefresh();
       })
     );
-
-    this.triggerFullRefresh();
   }
 
   // ===== FULL REFRESH =====
@@ -202,6 +204,11 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
     return this.i18n?.[key] ?? key;
   }
 
+  // ===== REMOVE ALL STATE ICONS (pour désactivation propre) =====
+  removeAllStateIcons() {
+    document.querySelectorAll(".swef-state-icon").forEach(el => el.remove());
+  }
+
   // ===== FILE EXPLORER RENDER =====
   refreshFileExplorer() {
     const leaves = this.app.workspace.getLeavesOfType("file-explorer");
@@ -214,14 +221,15 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
         const file = item.file;
         if (!file) return;
 
-        const stateId = this.stateMap[file.path];
-        const state = this.states[stateId];
-        if (!state) return;
-
         const title = item.el?.querySelector(".tree-item-inner");
         if (!title) return;
 
+        // Toujours nettoyer d’abord (sinon les icônes “restent” quand l’état est supprimé ou quand le plugin est coupé)
         title.querySelector(".swef-state-icon")?.remove();
+
+        const stateId = this.stateMap[file.path];
+        const state = this.states[stateId];
+        if (!state) return;
 
         const icon = document.createElement("span");
         icon.className = "swef-state-icon";
@@ -235,6 +243,8 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
   }
 
   onunload() {
-    console.log("Note State Icons Unloaded");
+    console.log("Note & Folder State Icons Unloaded");
+    // Désactivation sans redémarrage : retirer immédiatement toutes les icônes
+    this.removeAllStateIcons();
   }
 };
