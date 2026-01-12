@@ -8,7 +8,7 @@ The purpose of this plugin is to provide **clear, immediate visual feedback** ab
 
 ## ✨ Features
 
-- Assign an **icon-based state** to any Markdown note
+- Assign an **icon-based state** to any note or folder title
 - Icons are displayed **only in the File Explorer**
 - No tags, no frontmatter, no text injection inside notes
 - States are **persistent** across Obsidian restarts
