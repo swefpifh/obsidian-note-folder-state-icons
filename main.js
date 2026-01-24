@@ -60,7 +60,10 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
 
     this.stateMap = (await this.loadData()) || {};
 
-    // Nettoyage + refresh immédiat à l’activation (évite “pas d’icônes jusqu’au redémarrage”)
+    // ===== CSS (icône visuelle, jamais dans le texte) =====
+    this.injectStateIconCss();
+
+    // Nettoyage + refresh immédiat à l’activation
     this.removeAllStateIcons();
     this.triggerFullRefresh();
 
@@ -204,9 +207,35 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
     return this.i18n?.[key] ?? key;
   }
 
+  // ===== CSS INJECTION =====
+  injectStateIconCss() {
+    if (this._styleEl) return;
+
+    const style = document.createElement("style");
+    style.id = "swef-note-state-icons-style";
+    style.textContent = `
+      .tree-item-inner.swef-has-state-icon::before {
+        content: attr(data-swef-state-icon);
+        display: inline-block;
+        margin-right: 6px;
+        font-weight: bold;
+      }
+    `;
+    document.head.appendChild(style);
+
+    this._styleEl = style;
+    this.register(() => {
+      try { this._styleEl?.remove(); } catch {}
+      this._styleEl = null;
+    });
+  }
+
   // ===== REMOVE ALL STATE ICONS (pour désactivation propre) =====
   removeAllStateIcons() {
-    document.querySelectorAll(".swef-state-icon").forEach(el => el.remove());
+    document.querySelectorAll(".tree-item-inner.swef-has-state-icon").forEach(el => {
+      el.classList.remove("swef-has-state-icon");
+      el.removeAttribute("data-swef-state-icon");
+    });
   }
 
   // ===== FILE EXPLORER RENDER =====
@@ -224,27 +253,23 @@ module.exports = class SwefNoteStateIconsPlugin extends Plugin {
         const title = item.el?.querySelector(".tree-item-inner");
         if (!title) return;
 
-        // Toujours nettoyer d’abord (sinon les icônes “restent” quand l’état est supprimé ou quand le plugin est coupé)
-        title.querySelector(".swef-state-icon")?.remove();
+        // Toujours nettoyer d’abord
+        title.classList.remove("swef-has-state-icon");
+        title.removeAttribute("data-swef-state-icon");
 
         const stateId = this.stateMap[file.path];
         const state = this.states[stateId];
         if (!state) return;
 
-        const icon = document.createElement("span");
-        icon.className = "swef-state-icon";
-        icon.textContent = state.icon;
-        icon.style.marginRight = "6px";
-        icon.style.fontWeight = "bold";
-
-        title.prepend(icon);
+        // Icône en visuel via CSS (pas dans le texte)
+        title.classList.add("swef-has-state-icon");
+        title.setAttribute("data-swef-state-icon", state.icon);
       });
     });
   }
 
   onunload() {
     console.log("Note & Folder State Icons Unloaded");
-    // Désactivation sans redémarrage : retirer immédiatement toutes les icônes
     this.removeAllStateIcons();
   }
 };
